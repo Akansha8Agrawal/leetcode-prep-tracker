@@ -32,7 +32,7 @@ structured DSA interview prep ahead of SDE campus placements.
 ## Sample output
 
 **Telegram digest:**
-![sample output](docs/telegram.png)
+![sample output](docs/sample-output.jpeg)
 
 **Progress log:**
 ![sheet log](docs/sheet-log.png)
