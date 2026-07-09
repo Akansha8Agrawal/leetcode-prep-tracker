@@ -1,0 +1,333 @@
+{
+  "name": "LeetCode Prep Auto-Tracker",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 21
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        0,
+        0
+      ],
+      "id": "fd18f60b-911a-4a2c-be09-68c3c2a1ae7a",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "url": "https://alfa-leetcode-api.onrender.com/Akansha19Agrawal/solved",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        208,
+        0
+      ],
+      "id": "d3667862-fb6d-4576-8f03-314709662603",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "jsCode": "const data = $input.first().json;\n\nconst today = new Date().toISOString().split('T')[0];\n\nreturn [{\n  json: {\n    date: today,\n    totalSolved: data.solvedProblem,\n    easySolved: data.easySolved,\n    mediumSolved: data.mediumSolved,\n    hardSolved: data.hardSolved\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        416,
+        0
+      ],
+      "id": "2d8a39d7-a2f4-464c-9a0c-edd845a723fc",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1SD14reRQx-zXHc6Kaou430mNAiZ1hk8av24eOXwtKFE",
+          "mode": "list",
+          "cachedResultName": "LeetCode Progress Log",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1SD14reRQx-zXHc6Kaou430mNAiZ1hk8av24eOXwtKFE/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1SD14reRQx-zXHc6Kaou430mNAiZ1hk8av24eOXwtKFE/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Date": "={{$json.date}}",
+            "TotalSolved": "={{$json.totalSolved}}",
+            "Easy": "={{$json.easySolved}}",
+            "Medium": "={{$json.mediumSolved}}",
+            "Hard": "={{$json.hardSolved}}",
+            "Rating": "=",
+            "Delta": "="
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Date",
+              "displayName": "Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "TotalSolved",
+              "displayName": "TotalSolved",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Easy",
+              "displayName": "Easy",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Medium",
+              "displayName": "Medium",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Hard",
+              "displayName": "Hard",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Rating",
+              "displayName": "Rating",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Delta",
+              "displayName": "Delta",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        624,
+        0
+      ],
+      "id": "7a2a8414-6ce0-43d9-ad63-46d8eba72e5b",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "7WL0rBOQsTjxESn6",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const stats = $input.first().json;\n\nconst prompt = `You are a DSA prep coach for a student targeting SDE campus placements starting Aug 3, 2026.\n\nToday's stats:\n- Total solved: ${stats.totalSolved} (Easy: ${stats.easySolved}, Medium: ${stats.mediumSolved}, Hard: ${stats.hardSolved})\n- Weak areas: Dynamic Programming (especially Digit DP), Graphs/Trees, OOP, SQL\n- Goal: reach 400-450 total solved before the drive season\n\nRespond with plain text only (this goes straight into a Telegram message):\n1. Exactly 3 LeetCode problems to attempt today, mixing weak areas. Include name + difficulty.\n2. One specific, actionable study tip for today.\n3. A short one-line motivational note.\n\nKeep the whole response under 120 words.`;\n\nreturn [{ json: { prompt } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        832,
+        0
+      ],
+      "id": "e86ded9b-c9a5-45ae-b43a-fc0d839d40d7",
+      "name": "Code in JavaScript1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.groq.com/openai/v1/chat/completions",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"llama-3.3-70b-versatile\",\n  \"messages\": [\n    { \"role\": \"user\", \"content\": {{ JSON.stringify($json.prompt) }} }\n  ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        1120,
+        0
+      ],
+      "id": "d051c0ae-274d-49c3-8272-7a9ea22fda6b",
+      "name": "HTTP Request1",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "X0NWa5QXQVb6s6m1",
+          "name": "Header Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const response = $input.first().json;\nconst text = response.choices[0].message.content;\n\nreturn [{ json: { message: text } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1328,
+        0
+      ],
+      "id": "00c6edda-5887-4cef-bcfc-0b5107d66a80",
+      "name": "Code in JavaScript2"
+    },
+    {
+      "parameters": {
+        "chatId": "1300876832",
+        "text": "=LeetCode Daily Digest  {{ $json.message }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1536,
+        0
+      ],
+      "id": "02eb2f1e-e291-4fe6-b623-5e92e8fb22d1",
+      "name": "Send a text message",
+      "webhookId": "ac2227cd-436a-4c77-9204-e2f49fc33019",
+      "credentials": {
+        "telegramApi": {
+          "id": "kZ0o2Nybh1JGl9kO",
+          "name": "Telegram account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript2": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "aea0b199-be49-4e9a-8ab6-f332be36417c",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "30fd71ebf724ca8bbf75cbf4cdf343a437fdeac69e7c285422f78f3c86bb1556"
+  },
+  "nodeGroups": [],
+  "id": "E9JydPdgez30Wcgf",
+  "tags": []
+}
