@@ -14,10 +14,10 @@
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.3,
       "position": [
-        0,
-        0
+        384,
+        -112
       ],
-      "id": "fd18f60b-911a-4a2c-be09-68c3c2a1ae7a",
+      "id": "d39a051f-5f4a-4cf5-bdc4-57dae77ceeda",
       "name": "Schedule Trigger"
     },
     {
@@ -28,10 +28,10 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.4,
       "position": [
-        208,
-        0
+        592,
+        -112
       ],
-      "id": "d3667862-fb6d-4576-8f03-314709662603",
+      "id": "4da4ce91-0597-4469-92fd-9c33067be260",
       "name": "HTTP Request"
     },
     {
@@ -41,14 +41,15 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        416,
-        0
+        800,
+        -112
       ],
-      "id": "2d8a39d7-a2f4-464c-9a0c-edd845a723fc",
+      "id": "7b784bc2-90ef-4ace-b88e-4af4b2c20802",
       "name": "Code in JavaScript"
     },
     {
       "parameters": {
+        "authentication": "serviceAccount",
         "operation": "append",
         "documentId": {
           "__rl": true,
@@ -149,14 +150,14 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        624,
-        0
+        1008,
+        -112
       ],
-      "id": "7a2a8414-6ce0-43d9-ad63-46d8eba72e5b",
+      "id": "7dee7f54-72bf-4df0-9adb-94d5879fa040",
       "name": "Append row in sheet",
       "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "7WL0rBOQsTjxESn6",
+        "googleApi": {
+          "id": "YBk6cJHYEyDoILlH",
           "name": "Google Sheets account"
         }
       }
@@ -168,10 +169,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        832,
-        0
+        1216,
+        -112
       ],
-      "id": "e86ded9b-c9a5-45ae-b43a-fc0d839d40d7",
+      "id": "291e49b0-d997-46d6-9da3-4261d6f71494",
       "name": "Code in JavaScript1"
     },
     {
@@ -188,14 +189,14 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.4,
       "position": [
-        1120,
-        0
+        1504,
+        -112
       ],
-      "id": "d051c0ae-274d-49c3-8272-7a9ea22fda6b",
+      "id": "4c42d853-a10f-4bc1-8a8e-6493c7cf88df",
       "name": "HTTP Request1",
       "credentials": {
         "httpHeaderAuth": {
-          "id": "X0NWa5QXQVb6s6m1",
+          "id": "QoVJ7Bi0LPSLQ8zv",
           "name": "Header Auth account"
         }
       }
@@ -207,10 +208,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1328,
-        0
+        1712,
+        -112
       ],
-      "id": "00c6edda-5887-4cef-bcfc-0b5107d66a80",
+      "id": "f1a67657-bce1-49bc-ae13-e101e9f6886b",
       "name": "Code in JavaScript2"
     },
     {
@@ -222,18 +223,73 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        1536,
-        0
+        2032,
+        -112
       ],
-      "id": "02eb2f1e-e291-4fe6-b623-5e92e8fb22d1",
+      "id": "72fa6f59-be10-4356-8de1-a1ee9f1a8557",
       "name": "Send a text message",
       "webhookId": "ac2227cd-436a-4c77-9204-e2f49fc33019",
       "credentials": {
         "telegramApi": {
-          "id": "kZ0o2Nybh1JGl9kO",
+          "id": "HgnAHj79kTmpu75f",
           "name": "Telegram account"
         }
       }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "sync-leetcode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        1168,
+        176
+      ],
+      "id": "9e4a26ea-7c15-48b7-93c9-1ca465a4ebf2",
+      "name": "Webhook",
+      "webhookId": "a58eeb7a-d6f8-41b7-af0f-a65bbbfa826a"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://paweiisfdbfbgvlnzbfq.supabase.co/rest/v1/progress_logs",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBhd2VpaXNmZGJmYmd2bG56YmZxIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4MzY1ODAwMSwiZXhwIjoyMDk5MjM0MDAxfQ.ZpBkRScfFHy0zgrIyhoJPPA0WmsKXxyOrd-aREAzXkQ"
+            },
+            {
+              "name": "Authorization",
+              "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBhd2VpaXNmZGJmYmd2bG56YmZxIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4MzY1ODAwMSwiZXhwIjoyMDk5MjM0MDAxfQ.ZpBkRScfFHy0zgrIyhoJPPA0WmsKXxyOrd-aREAzXkQ"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Prefer",
+              "value": "return=minimal"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"date\": \"{{ $('Code in JavaScript').item.json.date }}\",\n  \"total_solved\": {{ $('Code in JavaScript').item.json.totalSolved }},\n  \"easy_solved\": {{ $('Code in JavaScript').item.json.easySolved }},\n  \"medium_solved\": {{ $('Code in JavaScript').item.json.mediumSolved }},\n  \"hard_solved\": {{ $('Code in JavaScript').item.json.hardSolved }},\n  \"recommendation\": {{ JSON.stringify($json.message) }}\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        1872,
+        -112
+      ],
+      "id": "0f22f8c4-1f5b-45c3-b38e-fdbaa96da73d",
+      "name": "HTTP Request2"
     }
   ],
   "pinData": {},
@@ -308,6 +364,28 @@
       "main": [
         [
           {
+            "node": "HTTP Request2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request2": {
+      "main": [
+        [
+          {
             "node": "Send a text message",
             "type": "main",
             "index": 0
@@ -316,18 +394,17 @@
       ]
     }
   },
-  "active": true,
+  "active": false,
   "settings": {
     "executionOrder": "v1",
-    "binaryMode": "separate",
-    "availableInMCP": false
+    "binaryMode": "separate"
   },
-  "versionId": "aea0b199-be49-4e9a-8ab6-f332be36417c",
+  "versionId": "b5ddbfaa-e283-48b3-a177-1b8f996b371f",
   "meta": {
     "templateCredsSetupCompleted": true,
-    "instanceId": "30fd71ebf724ca8bbf75cbf4cdf343a437fdeac69e7c285422f78f3c86bb1556"
+    "instanceId": "226e05c65451c9d4d9520c8eb661d0c06817a237eb3a79275fda28e95bdb8ee8"
   },
   "nodeGroups": [],
-  "id": "E9JydPdgez30Wcgf",
+  "id": "gP5vwQxmqpMHGwDL",
   "tags": []
 }
