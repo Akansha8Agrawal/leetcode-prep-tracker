@@ -5,6 +5,12 @@ LLM to generate personalized practice recommendations based on known weak
 topic areas, and delivers a daily digest via Telegram — built to support
 structured DSA interview prep ahead of SDE campus placements.
 
+## Live Deployment
+
+- **LeetCode Stats API:** [alfa-leetcode-api.onrender.com](https://alfa-leetcode-api.onrender.com) — self-hosted fork, deployed on Render
+- **Workflow orchestration:** n8n (self-hosted locally via npx), triggered on-demand
+- **Progress log:** Google Sheets, updated on each run
+
 ## Architecture
 
 ![architecture](docs/architecture.png)
