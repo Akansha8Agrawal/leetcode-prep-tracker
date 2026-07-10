@@ -240,7 +240,16 @@
       "parameters": {
         "httpMethod": "POST",
         "path": "sync-leetcode",
-        "options": {}
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Access-Control-Allow-Origin",
+                "value": "*"
+              }
+            ]
+          }
+        }
       },
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2.1,
@@ -394,12 +403,13 @@
       ]
     }
   },
-  "active": false,
+  "active": true,
   "settings": {
     "executionOrder": "v1",
-    "binaryMode": "separate"
+    "binaryMode": "separate",
+    "availableInMCP": false
   },
-  "versionId": "b5ddbfaa-e283-48b3-a177-1b8f996b371f",
+  "versionId": "68871d10-2ffa-4519-bc5e-9b92e5891278",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "226e05c65451c9d4d9520c8eb661d0c06817a237eb3a79275fda28e95bdb8ee8"
