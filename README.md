@@ -7,6 +7,12 @@ structured DSA interview prep ahead of SDE campus placements.
 
 ## Live Deployment
 
+- **Dashboard:** [leetcode-dashboard-ui.vercel.app](https://leetcode-dashboard-ui.vercel.app)
+- **Demo video:** [Loom walkthrough](https://www.loom.com/share/0e988310f1c1424bb9227d40f90cfd5a)
+- **LeetCode Stats API:** [alfa-leetcode-api.onrender.com](https://alfa-leetcode-api.onrender.com)
+- **Workflow orchestration:** n8n (self-hosted on Render), triggered on schedule or via webhook
+- **Database:** Supabase (Postgres + Auth)
+
 - **LeetCode Stats API:** [alfa-leetcode-api.onrender.com](https://alfa-leetcode-api.onrender.com) — self-hosted fork, deployed on Render
 - **Workflow orchestration:** n8n (self-hosted locally via npx), triggered on-demand
 - **Progress log:** Google Sheets, updated on each run
